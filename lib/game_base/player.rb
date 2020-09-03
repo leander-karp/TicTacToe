@@ -1,14 +1,8 @@
 
 class Player
+  attr_reader :name, :icon
   def initialize(name, icon)
-
-  end
-
-  def name 
-    ''
-  end
-
-  def icon 
-    ''
+    @name = name 
+    @icon = icon
   end
 end
