@@ -1,11 +1,11 @@
-require 'player'
+require 'game_base/player'
 
 RSpec.describe Player do 
-  subject(:player) {described_class.new(name, icon)}
+  subject(:player) {described_class.new(name, precedence)}
 
   describe '#make_move' do 
     
   end
   context 'name'
-  context 'icon'
+  context 'precedence'
 end 
