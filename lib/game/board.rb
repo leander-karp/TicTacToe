@@ -21,7 +21,7 @@ class Board
     end
   end
 
-  def is_full?
+  def all?
     return false if @board.empty?
     (0...@rows).each { |index| return false if @board[index].include?(nil)}
     true 

@@ -20,7 +20,7 @@ class TicTacToe
 
   def game_over?
     (0..3).each { |index| return true if row_elements_equal?(index) || column_elements_equal?(index)}
-    board.is_full? || diagonal_elements_equal?
+    board.all? || diagonal_elements_equal?
   end
 
   private 

@@ -6,20 +6,20 @@ RSpec.describe Board do
     expect {described_class.new}.to raise_error(ArgumentError)
   end 
 
-  describe '#is_full?' do 
+  describe '#all?' do 
     subject(:board) {described_class.new(2,2)}
     let(:piece) {Piece.new('X')}
 
     it 'equals only true if the board is full' do
-      expect(board.is_full?).to eq false
+      expect(board.all?).to eq false
       board.add(piece, [0,0])
-      expect(board.is_full?).to eq false
+      expect(board.all?).to eq false
       board.add(piece, [0,1])
-      expect(board.is_full?).to eq false
+      expect(board.all?).to eq false
       board.add(piece, [1,0])
-      expect(board.is_full?).to eq false
+      expect(board.all?).to eq false
       board.add(piece, [1,1])
-      expect(board.is_full?).to eq true
+      expect(board.all?).to eq true
     end
   end 
 
