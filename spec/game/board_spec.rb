@@ -1,17 +1,9 @@
-require 'game_base/board'
-require 'game_base/piece'
+require 'game/board'
+require 'game/piece'
 
 RSpec.describe Board do 
-
-  context 'empty board' do 
-    subject(:board) {described_class.new(0,0)}
-    let(:piece) do 
-      Piece.new('X')
-    end
-
-    it 'fails to add a piece to the board' do 
-      expect(board.add(piece, [0,0])).to eq false 
-    end 
+  it 'raises an ArgumentError if the size is 0' do 
+    expect {described_class.new}.to raise_error(ArgumentError)
   end 
 
   describe '#is_full?' do 
@@ -55,12 +47,6 @@ RSpec.describe Board do
   end
 
   describe '#number_of_rows' do 
-    it 'returns 0 for empty boards' do 
-      expect(described_class.new.number_of_rows).to eq 0
-      expect(described_class.new(1, 0).number_of_rows).to eq 0
-      expect(described_class.new(0, 1).number_of_rows).to eq 0
-    end 
-
     it 'returns length for multiple row boards' do 
       expect(described_class.new(1, 1).number_of_rows).to eq 1
       expect(described_class.new(2, 1).number_of_rows).to eq 2
@@ -69,12 +55,6 @@ RSpec.describe Board do
   end 
 
   describe '#number_of_colums' do 
-    it 'returns 0 for empty boards' do 
-      expect(described_class.new.number_of_colums).to eq 0
-      expect(described_class.new(1, 0).number_of_colums).to eq 0
-      expect(described_class.new(0, 1).number_of_colums).to eq 0
-    end 
-
     it 'returns length for multiple column boards' do 
       expect(described_class.new(1, 1).number_of_colums).to eq 1
       expect(described_class.new(1, 2).number_of_colums).to eq 2

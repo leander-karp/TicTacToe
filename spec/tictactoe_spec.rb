@@ -1,6 +1,6 @@
 require 'tictactoe'
-require 'game_base/piece'
-require 'game_base/player'
+#require 'game/piece'
+#require 'game/player'
 
 def fill_row(game, row, players)
   (0...3).each do |index|
@@ -21,7 +21,7 @@ RSpec.describe TicTacToe do
 
 
   describe '#start'
-  
+
   describe '#game_over?' do 
     it 'equals false if the board is empty' do 
       expect(game.game_over?).to be false

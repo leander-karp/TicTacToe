@@ -1,4 +1,4 @@
-require 'game_base/player'
+require 'game/player'
 
 RSpec.describe Player do 
 

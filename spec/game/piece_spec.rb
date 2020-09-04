@@ -1,4 +1,4 @@
-require 'game_base/piece'
+require 'game/piece'
 
 RSpec.describe Piece do 
   subject(:piece) {described_class.new(icon)}

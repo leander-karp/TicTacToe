@@ -1,8 +1,8 @@
 
 class Board
   def initialize(rows=0, columns=0)
-    if rows >= 0 || columns <= 0
-      raise ArgumentError('Invalid board size provided.')
+    if rows <= 0 || columns <= 0
+      raise ArgumentError.new 'Invalid board size provided.'
     else
       @board = Array.new(rows) {Array.new(columns)}
       @rows = rows

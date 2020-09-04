@@ -1,4 +1,4 @@
-require 'game_base/board'
+require 'game/board'
 
 class TicTacToe 
   attr_reader :board, :current_player
