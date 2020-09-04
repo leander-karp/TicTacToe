@@ -21,6 +21,7 @@ RSpec.describe TicTacToe do
 
 
   describe '#start'
+  
   describe '#game_over?' do 
     it 'equals false if the board is empty' do 
       expect(game.game_over?).to be false
@@ -77,7 +78,7 @@ RSpec.describe TicTacToe do
   end
 
   describe '#winner' 
-  
+
   describe '#current_player' do 
     it 'equals playerA if no move was made' do 
       expect(game.current_player).to eq playerA
@@ -101,6 +102,7 @@ RSpec.describe TicTacToe do
       expect(game.current_player).to eq playerB
     end
   end
+
   describe '#reset'
 
   describe '#make_move' do 

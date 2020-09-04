@@ -1,14 +1,12 @@
 
 class Board
   def initialize(rows=0, columns=0)
-    if rows > 0 && columns > 0
+    if rows >= 0 || columns <= 0
+      raise ArgumentError('Invalid board size provided.')
+    else
       @board = Array.new(rows) {Array.new(columns)}
       @rows = rows
       @columns = columns
-    else
-      @board = []
-      @rows = 0
-      @columns = 0 
     end
   end
 
@@ -24,11 +22,8 @@ class Board
   end
 
   def is_full?
-    if @board.empty?
-      return false 
-    else
-      (0...@rows).each { |index| return false if @board[index].include?(nil)}
-    end
+    return false if @board.empty?
+    (0...@rows).each { |index| return false if @board[index].include?(nil)}
     true 
   end
 
@@ -46,7 +41,7 @@ class Board
     @columns
   end
 
-  protected 
+  private 
   def valid_position?(row_index, column_index)
     row_index < @rows && column_index < @columns
   end

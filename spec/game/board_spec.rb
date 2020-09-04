@@ -6,7 +6,7 @@ RSpec.describe Board do
   context 'empty board' do 
     subject(:board) {described_class.new(0,0)}
     let(:piece) do 
-      Piece.new('piece')
+      Piece.new('X')
     end
 
     it 'fails to add a piece to the board' do 
@@ -16,7 +16,7 @@ RSpec.describe Board do
 
   describe '#is_full?' do 
     subject(:board) {described_class.new(2,2)}
-    let(:piece) {Piece.new('piece')}
+    let(:piece) {Piece.new('X')}
 
     it 'equals only true if the board is full' do
       expect(board.is_full?).to eq false
@@ -31,7 +31,7 @@ RSpec.describe Board do
     end
   end 
 
-  context 'piece modification' do 
+  context 'board modification' do 
     subject(:board) {described_class.new(3, 3)}
     let(:piece_X) do 
       Piece.new('X')
