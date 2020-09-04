@@ -19,8 +19,11 @@ class TicTacToe
   end
 
   def game_over?
-    (0..3).each { |index| return true if row_elements_equal?(index) || column_elements_equal?(index)}
-    board.all? || diagonal_elements_equal?
+    row_or_column_win = (0...3).map do |index| 
+      row_elements_equal?(index) || column_elements_equal?(index)
+    end.any?
+    
+    board.all? || diagonal_elements_equal? || row_or_column_win
   end
 
   private 

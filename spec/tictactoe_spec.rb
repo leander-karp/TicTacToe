@@ -70,13 +70,6 @@ RSpec.describe TicTacToe do
     end 
   end 
 
-  describe '#board' do 
-    it 'equals a valid 3x3 tic tac toe board' do 
-      expect(game.board.number_of_rows).to eq 3 
-      expect(game.board.number_of_colums).to eq 3
-    end 
-  end
-
   describe '#winner' 
 
   describe '#current_player' do 
@@ -103,7 +96,9 @@ RSpec.describe TicTacToe do
     end
   end
 
-  describe '#reset'
+  describe '#reset' do 
+    
+  end 
 
   describe '#make_move' do 
     context 'when given a player and a position' do 

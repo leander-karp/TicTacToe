@@ -46,18 +46,18 @@ RSpec.describe Board do
     end 
   end
 
-  describe '#number_of_rows' do 
+  describe '#rows' do 
     it 'returns length for multiple row boards' do 
-      expect(described_class.new(1, 1).number_of_rows).to eq 1
-      expect(described_class.new(2, 1).number_of_rows).to eq 2
+      expect(described_class.new(1, 1).rows).to eq 1
+      expect(described_class.new(2, 1).rows).to eq 2
 
     end
   end 
 
-  describe '#number_of_colums' do 
+  describe '#columns' do 
     it 'returns length for multiple column boards' do 
-      expect(described_class.new(1, 1).number_of_colums).to eq 1
-      expect(described_class.new(1, 2).number_of_colums).to eq 2
+      expect(described_class.new(1, 1).columns).to eq 1
+      expect(described_class.new(1, 2).columns).to eq 2
     end
   end
 end 
