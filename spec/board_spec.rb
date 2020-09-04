@@ -14,6 +14,23 @@ RSpec.describe Board do
     end 
   end 
 
+  describe '#is_full?' do 
+    subject(:board) {described_class.new(2,2)}
+    let(:piece) {Piece.new('piece')}
+
+    it 'equals only true if the board is full' do
+      expect(board.is_full?).to eq false
+      board.add(piece, [0,0])
+      expect(board.is_full?).to eq false
+      board.add(piece, [0,1])
+      expect(board.is_full?).to eq false
+      board.add(piece, [1,0])
+      expect(board.is_full?).to eq false
+      board.add(piece, [1,1])
+      expect(board.is_full?).to eq true
+    end
+  end 
+
   context 'piece modification' do 
     subject(:board) {described_class.new(3, 3)}
     let(:piece_X) do 

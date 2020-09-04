@@ -23,6 +23,15 @@ class Board
     end
   end
 
+  def is_full?
+    if @board.empty?
+      return false 
+    else
+      (0...@rows).each { |index| return false if @board[index].include?(nil)}
+    end
+    true 
+  end
+
   def get(row_index, column_index)
     if valid_position?(row_index, column_index)
       @board[row_index][column_index]
