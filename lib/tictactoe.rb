@@ -1,4 +1,5 @@
 require 'game_base/board'
+require 'set'
 
 class TicTacToe 
   attr_reader :board
@@ -12,15 +13,34 @@ class TicTacToe
   end
 
   def game_over?
-    counter = 0
-    (0..3).each { |row_index|
-      (0..3).each { |column_index|
-        if !@board.get(row_index, column_index).nil?
-          counter += 1
-        end
-      }
-    }
-    counter == 9 
+    (0..3).each { |index| return true if row_elements_equal?(index) || column_elements_equal?(index)}
+    board.is_full? || diagonal_elements_equal?
   end
 
+  private 
+  def diagonal_elements_equal?()
+    top_left = board.get(0,0)
+    top_right = board.get(0,1)
+    center = board.get(1,1)
+    bottom_left = board.get(2,0)
+    bottom_right = board.get(2,2)
+
+    !center.nil? && (
+      (top_left==center && bottom_right==center) || 
+      (top_right==center && bottom_left==center))
+  end 
+
+  def row_elements_equal?(row_index)
+    a = board.get(row_index,0)
+    b = board.get(row_index,1) 
+    c = board.get(row_index,2)
+    !a.nil? && a==b && b==c
+  end
+
+  def column_elements_equal?(column_index)
+    a = board.get(0, column_index)
+    b = board.get(1, column_index) 
+    c = board.get(2, column_index)
+    !a.nil? && a==b && b==c
+  end
 end
