@@ -1,5 +1,4 @@
 require 'tictactoe'
-require 'game_base/board'
 require 'game_base/piece'
 require 'game_base/player'
 
@@ -10,10 +9,26 @@ RSpec.describe TicTacToe do
 
   describe '#start'
   describe '#game_over?' do 
-    it 'equals true if there are 3 in a row' do 
-      board = Board.new
-      board.add(Piece.new('X'), [1,1])
+    it 'equals false if the board is empty' do 
+      expect(game.game_over?).to be false
     end 
+
+    it 'equals true if the board is full' do 
+      game.make_move(playerA, [0,0])
+      game.make_move(playerA, [0,1])
+      game.make_move(playerB, [0,2])
+
+      game.make_move(playerB, [1,0])
+      game.make_move(playerB, [1,1])
+      game.make_move(playerA, [1,2])
+
+      game.make_move(playerA, [2,0])
+      game.make_move(playerB, [2,1])
+      game.make_move(playerA, [2,2])
+      expect(game.game_over?).to be true
+    end 
+    it 'equals true because there are 3 equal pieces in a row' do 
+    end     
   end 
 
   describe '#board' do 
@@ -25,6 +40,7 @@ RSpec.describe TicTacToe do
 
   describe '#winner'
   describe '#current_player'
+
   describe '#make_move' do 
     context 'when given a player and a position' do 
       it 'sets a Piece and returns true' do 
