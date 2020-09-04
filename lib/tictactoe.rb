@@ -1,15 +1,21 @@
 require 'game_base/board'
-require 'set'
 
 class TicTacToe 
-  attr_reader :board
+  attr_reader :board, :current_player
 
-  def initialize
-    @board = Board.new(3,3)
+  def initialize(first_player, second_player)
+    @first_player   = first_player
+    @second_player  = second_player
+    @current_player = @first_player
+    @board          = Board.new(3,3)
   end
-    
+
   def make_move(player, position)
-    @board.add(Piece.new(player.icon), position)
+    move_success = @board.add(Piece.new(player.icon), position)
+    if move_success
+      @current_player = player.equal?(@first_player)? @second_player : @first_player
+    end
+    move_success
   end
 
   def game_over?
@@ -18,12 +24,12 @@ class TicTacToe
   end
 
   private 
-  def diagonal_elements_equal?()
-    top_left = board.get(0,0)
-    top_right = board.get(0,1)
-    center = board.get(1,1)
-    bottom_left = board.get(2,0)
-    bottom_right = board.get(2,2)
+  def diagonal_elements_equal?
+    top_left      = board.get(0,0)
+    top_right     = board.get(0,1)
+    center        = board.get(1,1)
+    bottom_left   = board.get(2,0)
+    bottom_right  = board.get(2,2)
 
     !center.nil? && (
       (top_left==center && bottom_right==center) || 

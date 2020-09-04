@@ -15,9 +15,10 @@ def fill_column(game, column, players)
 end 
 
 RSpec.describe TicTacToe do 
-  subject(:game) {described_class.new}
   subject(:playerA) {Player.new('Max', 'X')}
   subject(:playerB) {Player.new('Moritz', 'O')}
+  subject(:game) {described_class.new(playerA, playerB)}
+
 
   describe '#start'
   describe '#game_over?' do 
@@ -75,8 +76,31 @@ RSpec.describe TicTacToe do
     end 
   end
 
-  describe '#winner'
-  describe '#current_player'
+  describe '#winner' 
+  
+  describe '#current_player' do 
+    it 'equals playerA if no move was made' do 
+      expect(game.current_player).to eq playerA
+    end 
+
+    it 'equals playerB, after playerA made a move' do 
+      game.make_move(playerA, [1,1])
+      expect(game.current_player).to eq playerB
+    end 
+
+    it 'equals playerA, after player B made a move' do 
+      game.make_move(playerA, [1,1])
+      expect(game.current_player).to eq playerB
+      game.make_move(playerB, [0,0])
+      expect(game.current_player).to eq playerA
+    end 
+
+    it 'equals playerB, if playerB`s move was invalid' do 
+      game.make_move(playerA, [1,1])
+      game.make_move(playerB, [1,1])
+      expect(game.current_player).to eq playerB
+    end
+  end
   describe '#reset'
 
   describe '#make_move' do 
