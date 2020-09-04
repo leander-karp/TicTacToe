@@ -1,22 +1,24 @@
 require 'game_base/player'
 
 RSpec.describe Player do 
-  subject(:player) {described_class.new(name, icon)}
 
-  context 'at construction' do
-    let(:name) do 
-      'Max'
-    end 
-    let(:icon) do 
-      'O'
+  context 'when constructed' do
+    subject(:playerA) {described_class.new(nameA, iconA)}
+    subject(:playerB) {described_class.new(nameB, iconB)}
+
+    let(:nameA) {'Max'} 
+    let(:iconA) {'O'}
+    let(:nameB) {'Moritz'}
+    let(:iconB) {'X'}
+
+    it 'has a name equal to the given one' do 
+      expect(playerA.name).to eq 'Max'
+      expect(playerB.name).to eq 'Moritz'
     end
 
-    it 'has a name' do 
-      expect(player.name).to eq 'Max'
-    end
-
-    it 'has an icon' do 
-      expect(player.icon).to eq 'O'
+    it 'has an icon equal to the given one' do 
+      expect(playerA.icon).to eq 'O'
+      expect(playerB.icon).to eq 'X'
     end
   end
 
