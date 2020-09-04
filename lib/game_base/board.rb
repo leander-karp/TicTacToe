@@ -1,10 +1,14 @@
 
 class Board
   def initialize(rows=0, columns=0)
-    @board = []
-
     if rows > 0 && columns > 0
       @board = Array.new(rows) {Array.new(columns)}
+      @rows = rows
+      @columns = columns
+    else
+      @board = []
+      @rows = 0
+      @columns = 0 
     end
   end
 
@@ -25,22 +29,16 @@ class Board
     end
   end
 
-  def remove(row_index, column_index)
-    old_piece = get(row_index, column_index)
-    add(nil, [row_index, column_index])
-    old_piece
-  end
-
   def number_of_rows
-    @board.length
+    @rows
   end
 
   def number_of_colums
-    number_of_rows > 0? @board[0].length : 0
+    @columns
   end
 
   protected 
   def valid_position?(row_index, column_index)
-    row_index < @board.length && column_index < @board[row_index].length
+    row_index < @rows && column_index < @columns
   end
 end

@@ -29,17 +29,7 @@ RSpec.describe Board do
       expect(board.get(0,0)).to eq piece_X
       expect(board.get(1,1)).to eq piece_O
     end 
-
-    it 'deletes pieces at valid positions' do 
-      board.add(piece_X, [0,0])
-      expect(board.remove(0,0)).to eq piece_X
-    end 
-
-    it 'does not delete missing pieces or from invalid positions' do 
-      expect(board.remove(10, 10)).to eq nil 
-      expect(board.remove(1, 1)).to eq nil
-    end 
-  end 
+  end
 
   describe '#number_of_rows' do 
     it 'returns 0 for empty boards' do 

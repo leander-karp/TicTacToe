@@ -3,12 +3,12 @@ require 'game_base/piece'
 RSpec.describe Piece do 
   subject(:piece) {described_class.new(icon)}
 
-  context 'has an icon value' do 
+  context 'when there is an icon value' do 
     let(:icon) do 
       'O'
     end 
 
-    it '' do 
+    it 'equals to the given argument' do 
       expect(piece.value).to eq 'O'
     end 
   end 
@@ -19,15 +19,12 @@ RSpec.describe Piece do
     end 
 
     it 'equals to another Piece with the same value' do 
-      expect(piece == Piece.new('O')).to be true
+      expect(piece).to eq(Piece.new('O'))
     end 
 
     it 'does not equal to a piece with a different value' do 
-      expect(piece == Piece.new('X')).to be false
-    end
-
-    it 'does only equals to other pieces' do 
-      expect(piece == 'a different object').to be false 
+      #expect(piece == Piece.new('X')).to be false
+      expect(piece).not_to eq(Piece.new('X'))
     end
   end 
 end 
