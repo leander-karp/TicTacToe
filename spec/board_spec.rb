@@ -29,6 +29,12 @@ RSpec.describe Board do
       expect(board.get(0,0)).to eq piece_X
       expect(board.get(1,1)).to eq piece_O
     end 
+
+    it 'disallows to add two pieces at the same place' do 
+      expect(board.add(piece_X, [0,0])).to eq true 
+      expect(board.add(piece_O, [0,0])).to eq false 
+      expect(board.get(0,0)).to eq piece_X
+    end 
   end
 
   describe '#number_of_rows' do 

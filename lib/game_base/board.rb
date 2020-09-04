@@ -15,7 +15,7 @@ class Board
   def add(piece, position)
     row_index = position[0]
     column_index = position[1]
-    if valid_position?(row_index, column_index)
+    if valid_position?(row_index, column_index) && get(row_index, column_index).nil?
       @board[row_index][column_index] = piece
       true
     else 
