@@ -22,9 +22,7 @@ class Board
   end
 
   def all?
-    return false if @board.empty?
-    (0...@rows).each { |index| return false if @board[index].include?(nil)}
-    true 
+    @board.flatten.all?
   end
 
   def get(row_index, column_index)
