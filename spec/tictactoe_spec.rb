@@ -71,8 +71,17 @@ RSpec.describe TicTacToe do
   end 
 
   describe '#winner' do 
-    context 'when nobody won' do 
+    context 'if the game is a draw' do 
       it 'equals nil' do 
+        fill_row(game, 0, [playerA, playerA, playerB])
+        fill_row(game, 1, [playerB, playerB, playerA])
+        fill_row(game, 2, [playerA, playerB, playerA])
+        expect(game.winner).to eq nil
+      end 
+    end 
+
+    context 'if the game is not over yet' do 
+      it 'equals nil if the board is empty' do 
         expect(game.winner).to eq nil
       end 
     end 
