@@ -70,7 +70,36 @@ RSpec.describe TicTacToe do
     end 
   end 
 
-  describe '#winner' 
+  describe '#winner' do 
+    context 'when nobody won' do 
+      it 'equals nil' do 
+        expect(game.winner).to eq nil
+      end 
+    end 
+
+    context 'when somebody has won' do 
+      it 'equals playerA' do 
+        game.make_move(game.current_player, [0,0])
+        game.make_move(game.current_player, [0,1])
+        game.make_move(game.current_player, [1,1])
+        game.make_move(game.current_player, [1,0])
+        game.make_move(game.current_player, [2,2])
+        expect(game.game_over?).to eq true
+        expect(game.winner).to eq playerA
+      end 
+
+      it 'equals playerB' do 
+        game.make_move(game.current_player, [0,1])
+        game.make_move(game.current_player, [0,0])
+        game.make_move(game.current_player, [1,0])
+        game.make_move(game.current_player, [1,1])
+        game.make_move(game.current_player, [2,0])
+        game.make_move(game.current_player, [2,2])
+        expect(game.game_over?).to eq true
+        expect(game.winner).to eq playerB
+      end
+    end 
+  end 
 
   describe '#current_player' do 
     it 'equals playerA if no move was made' do 
@@ -97,7 +126,7 @@ RSpec.describe TicTacToe do
   end
 
   describe '#reset' do 
-    
+
   end 
 
   describe '#make_move' do 

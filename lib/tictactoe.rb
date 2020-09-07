@@ -26,6 +26,12 @@ class TicTacToe
     board.all? || diagonal_elements_equal? || row_or_column_win
   end
 
+  def winner 
+    if self.game_over?
+      current_player.equal?(@first_player)? @second_player : @first_player
+    end
+  end
+
   private 
   def diagonal_elements_equal?
     top_left      = board.get(0,0)
