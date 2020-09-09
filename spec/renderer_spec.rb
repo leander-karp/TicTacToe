@@ -1,4 +1,4 @@
-require 'described_class'
+require 'renderer'
 require 'tictactoe'
 require 'game/player'
 require 'game/piece'
