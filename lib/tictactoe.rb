@@ -23,28 +23,22 @@ class TicTacToe
   end
 
   def winner 
-    winning_piece = fetch_winner_piece
-    winner = nil
-
-    if !winning_piece.nil? 
-      winner = winning_piece.value == @first_player.icon ? @first_player : @second_player
-    end 
-    winner 
+    @first_player.owns_piece?(fetch_winner_piece) ? @first_player : @second_player unless fetch_winner_piece.nil?
   end
 
   private 
   def fetch_winner_piece 
     row_or_column_win = (0...3).reduce(nil) do |accumulator, index| 
       if accumulator.nil?
-        accumulator = row_elements_equal?(index) || column_elements_equal?(index)
+        accumulator = row_elements_equal(index) || column_elements_equal(index)
       end 
       accumulator
     end
 
-    diagonal_elements_equal? || row_or_column_win
+    diagonal_elements_equal || row_or_column_win
   end 
 
-  def diagonal_elements_equal?
+  def diagonal_elements_equal
     top_left      = board.get(0,0)
     top_right     = board.get(0,1)
     center        = board.get(1,1)
@@ -56,14 +50,14 @@ class TicTacToe
       (top_right==center && bottom_left==center))
   end 
 
-  def row_elements_equal?(row_index)
+  def row_elements_equal(row_index)
     a = board.get(row_index,0)
     b = board.get(row_index,1) 
     c = board.get(row_index,2)
     a if !a.nil? && a==b && b==c
   end
 
-  def column_elements_equal?(column_index)
+  def column_elements_equal(column_index)
     a = board.get(0, column_index)
     b = board.get(1, column_index) 
     c = board.get(2, column_index)
