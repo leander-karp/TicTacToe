@@ -60,4 +60,9 @@ RSpec.describe Board do
       expect(described_class.new(1, 2).columns).to eq 2
     end
   end
+
+  describe '#row_at'
+  describe '#column_at'
+  describe '#row_all_equal?'
+  describe '#column_all_equal?'
 end 
