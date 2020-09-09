@@ -5,4 +5,8 @@ class Player
     @name = name 
     @icon = icon
   end
+
+  def owns_piece?(piece)
+    piece.value == icon
+  end
 end
