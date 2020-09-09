@@ -4,6 +4,12 @@ require_relative 'game/piece'
 
 class Renderer
   def input(game)
+    puts game.current_player.name + ' enter your next move:'
+  end
+
+  
+ ##### 
+  def XXXinput(game)
     puts 'Enter the board position you like to occupy:'
     input = gets.strip.chomp.split('')
     
