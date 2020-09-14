@@ -1,7 +1,6 @@
 require 'renderer'
 require 'tictactoe'
 require 'game/player'
-require 'game/piece'
 
 RSpec.describe Renderer do 
   let(:playerA) {Player.new('Max', 'O')}

@@ -3,7 +3,7 @@ require_relative 'game/player'
 require_relative 'game/piece'
 
 class Renderer
-  def self.input(game)
+  def self.input(game) #player_name
     puts game.current_player.name + ' enter your next move:'
     input = gets.chomp.split('').map do |char|
       num = char.to_i
@@ -13,7 +13,7 @@ class Renderer
     input.slice(0, 2) unless input.length < 2
   end
 
-  def self.print_board(game)
+  def self.print_board(game) #board
     board_string = []
     border = '+-+-+-+'
 

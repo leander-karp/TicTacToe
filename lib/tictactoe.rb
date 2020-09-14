@@ -1,4 +1,5 @@
-require 'game/board'
+require_relative 'game/board'
+require_relative 'renderer'
 
 class TicTacToe 
   attr_reader :board, :current_player
@@ -7,8 +8,21 @@ class TicTacToe
     @first_player   = first_player
     @second_player  = second_player
     @current_player = @first_player
-    @board          = Board.new(3,3)
+    @board          = Board.new(3, 3)
   end
+
+  def start
+    while !game_over?
+      Renderer.print_board(self)
+
+      next_move = Renderer.input(self)
+      while next_move.nil?
+        next_move = Renderer.input(self)
+      end
+
+      make_move(current_player, next_move)
+    end
+  end 
 
   def make_move(player, position)
     move_success = @board.add(Piece.new(player.icon), position)
