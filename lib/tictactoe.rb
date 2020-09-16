@@ -40,7 +40,9 @@ class TicTacToe
   end
 
   def winner 
-    @first_player.owns_piece?(fetch_winner_piece) ? @first_player : @second_player unless fetch_winner_piece.nil?
+    winning_piece = fetch_winner_piece
+    return nil if winning_piece.nil?
+    @first_player.owns_piece?(winning_piece) ? @first_player : @second_player 
   end
 
   private 
