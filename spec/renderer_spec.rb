@@ -45,13 +45,13 @@ RSpec.describe Renderer do
   describe '#print_board' do 
     it 'prints the empty board' do 
       expected_board = "+-+-+-+\n| | | |\n+-+-+-+\n| | | |\n+-+-+-+\n| | | |\n+-+-+-+\n"
-      expect{described_class.print_board(game)}.to output(expected_board).to_stdout
+      expect{described_class.print_board(game.board)}.to output(expected_board).to_stdout
     end
 
     it 'prints the board correctly after a move was made' do 
       expected_board = "+-+-+-+\n|O| | |\n+-+-+-+\n| | | |\n+-+-+-+\n| | | |\n+-+-+-+\n"
       game.make_move(game.current_player, [0,0])
-      expect{described_class.print_board(game)}.to output(expected_board).to_stdout
+      expect{described_class.print_board(game.board)}.to output(expected_board).to_stdout
     end
     # muss auf die Textbreite achten -> Board#colum_at
   end
