@@ -15,9 +15,9 @@ class TicTacToe
     while !game_over?
       Renderer.print_board(self)
 
-      next_move = Renderer.input(self)
+      next_move = Renderer.input(current_player.name)
       while next_move.nil?
-        next_move = Renderer.input(self)
+        next_move = Renderer.input(current_player.name)
       end
 
       make_move(current_player, next_move)
