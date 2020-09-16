@@ -25,29 +25,28 @@ class Board
     @board.flatten.all?
   end
 
-  def row_equal?(row_index)
-    row = @board[row_index]
-    row.uniq.size == 1 && !row.include?(nil) unless row_index >= rows
+  def row_equal_piece(row_index)
+    equal_piece(@board[row_index])
   end
 
-  def column_equal?(column_index) 
+  def column_equal_piece(column_index) 
     if column_index < columns
       column = @board.reduce([]) do |accumulator, column_array|
         accumulator.push(column_array[column_index]) 
         accumulator
       end 
-      column.uniq.size == 1 && !column.include?(nil) 
+      equal_piece(column)
     end
   end 
 
-  def diagonal_equal?(row_index, column_index, modifier)
+  def diagonal_equal_piece(row_index, column_index, row_acc, column_acc)
     pieces = []
     while valid_position?(row_index, column_index)
       pieces.push(item_at(row_index, column_index))
-      row_index += modifier
-      column_index += modifier
+      row_index += row_acc
+      column_index += column_acc
     end 
-    pieces.uniq.size == 1 && !pieces.include?(nil) 
+    equal_piece(pieces)
   end 
 
   def item_at(row_index, column_index)
@@ -56,9 +55,12 @@ class Board
     end
   end
 
-
   private 
   def valid_position?(row_index, column_index)
     (0...rows).include?(row_index) && (0...columns).include?(column_index)
+  end
+
+  def equal_piece(array)
+    array.first if array.uniq.size == 1
   end
 end

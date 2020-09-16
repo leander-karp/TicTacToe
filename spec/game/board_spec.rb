@@ -61,31 +61,31 @@ RSpec.describe Board do
     end
   end
 
-  describe '#row_equal?' do 
+  describe '#row_equal_piece' do 
     subject(:board) {described_class.new(3,3)}
     subject(:piece_X) {Piece.new('X')}
 
-    it 'equals false if nil is present' do 
-      expect(board.row_equal?(0)).to eq false 
+    it 'equals nil if nil is present' do 
+      expect(board.row_equal_piece(0)).to eq nil 
     end 
 
-    it 'equals true if all elements in a row are equal' do 
+    it 'equals piece_X if all elements in a row are equal' do 
       board.add(piece_X, [0,0])
       board.add(piece_X, [0,1])
       board.add(piece_X, [0,2])
-      expect(board.row_equal?(0)).to be true
+      expect(board.row_equal_piece(0)).to eq piece_X
     end 
 
-    it 'equals false if one element is missing' do 
+    it 'equals nil if one element is missing' do 
       board.add(piece_X, [0,0])
       board.add(piece_X, [0,2])
-      expect(board.row_equal?(0)).to be false
+      expect(board.row_equal_piece(0)).to be nil
     end 
 
 
   end 
 
-  describe '#column_equal?' do 
+  describe '#column_equal_piece' do 
     subject(:piece_X) {Piece.new('X')}
     subject(:board) do 
       new_board = described_class.new(3,3) 
@@ -96,20 +96,20 @@ RSpec.describe Board do
       new_board
     end
 
-    it 'equals false if the column is empty' do 
-      expect(board.column_equal?(2)).to eq false
+    it 'equals nil if the column is empty' do 
+      expect(board.column_equal_piece(2)).to eq nil
     end 
 
     it 'equals nil if the column_index is greater than #columns' do 
-      expect(board.column_equal?(3)).to eq nil
+      expect(board.column_equal_piece(3)).to eq nil
     end 
 
     it 'equals true if all row elements are equal and not nil' do 
-      expect(board.column_equal?(0)).to eq true
+      expect(board.column_equal_piece(0)).to eq piece_X
     end 
   end 
 
-  describe '#diagonal_equal?' do 
+  describe '#diagonal_equal_piece' do 
     subject(:piece_X) {Piece.new('X')}
     subject(:board) do 
       new_board = described_class.new(3,3) 
@@ -119,13 +119,19 @@ RSpec.describe Board do
       new_board
     end
 
-    it 'equals false if nil is present in a diagonal' do 
-      expect(board.diagonal_equal?(2, 0, -1)).to eq false
-      
+    it 'equals nil if nil is present in a diagonal' do 
+      expect(board.diagonal_equal_piece(2, 0, -1, 1)).to eq nil
+      expect(board.diagonal_equal_piece(0, 2, 1, -1)).to eq nil
     end 
 
-    it 'equals true if all diagonal elements are equal' do 
-      expect(board.diagonal_equal?(0, 0, 1)).to eq true
+    it 'equals the piece if all diagonal elements are equal' do 
+      expect(board.diagonal_equal_piece(0, 0, 1, 1)).to eq piece_X
+      board.add(piece_X, [0,2])
+      board.add(piece_X, [2,0])
+      expect(board.diagonal_equal_piece(2, 0, -1, 1)).to eq piece_X
+
     end 
+
+
   end 
 end 
