@@ -3,8 +3,8 @@ require_relative 'game/player'
 require_relative 'game/piece'
 
 class Renderer
-  def self.input(game) #player_name
-    puts game.current_player.name + ' enter your next move:'
+  def self.input(current_player_name) 
+    puts current_player_name + ' enter your next move:'
     input = gets.chomp.split('').map do |char|
       num = char.to_i
       num if num.to_s == char
@@ -20,7 +20,7 @@ class Renderer
     for row_index in 0...game.board.rows
       row_data = ['']
       for column_index in 0...game.board.columns 
-        piece = game.board.get(row_index, column_index)
+        piece = game.board.item_at(row_index, column_index)
         row_data.push(piece.nil? ? ' ' : piece.value)
       end 
       board_string.push(border)

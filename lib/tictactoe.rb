@@ -33,7 +33,7 @@ class TicTacToe
   end
 
   def game_over?
-    board.all? || !fetch_winner_piece.nil?
+    board.full? || !fetch_winner_piece.nil?
   end
 
   def winner 
@@ -53,11 +53,11 @@ class TicTacToe
   end 
 
   def diagonal_elements_equal
-    top_left      = board.get(0,0)
-    top_right     = board.get(0,1)
-    center        = board.get(1,1)
-    bottom_left   = board.get(2,0)
-    bottom_right  = board.get(2,2)
+    top_left      = board.item_at(0,0)
+    top_right     = board.item_at(0,1)
+    center        = board.item_at(1,1)
+    bottom_left   = board.item_at(2,0)
+    bottom_right  = board.item_at(2,2)
 
     center if !center.nil? && (
       (top_left==center && bottom_right==center) || 
@@ -65,16 +65,16 @@ class TicTacToe
   end 
 
   def row_elements_equal(row_index)
-    a = board.get(row_index,0)
-    b = board.get(row_index,1) 
-    c = board.get(row_index,2)
+    a = board.item_at(row_index,0)
+    b = board.item_at(row_index,1) 
+    c = board.item_at(row_index,2)
     a if !a.nil? && a==b && b==c
   end
 
   def column_elements_equal(column_index)
-    a = board.get(0, column_index)
-    b = board.get(1, column_index) 
-    c = board.get(2, column_index)
+    a = board.item_at(0, column_index)
+    b = board.item_at(1, column_index) 
+    c = board.item_at(2, column_index)
     a if !a.nil? && a==b && b==c
   end
 end

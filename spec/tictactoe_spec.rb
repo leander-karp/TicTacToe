@@ -142,13 +142,13 @@ RSpec.describe TicTacToe do
     context 'when given a player and a position' do 
       it 'sets a Piece and returns true' do 
         expect(game.make_move(playerA, [1,1])).to be true
-        expect(game.board.get(1,1)).to eq Piece.new(playerA.icon) 
+        expect(game.board.item_at(1,1)).to eq Piece.new(playerA.icon) 
       end 
 
       it 'equals false if the position is occupied' do 
         game.make_move(playerA, [1,1])
         expect(game.make_move(playerB, [1,1])).to be false 
-        expect(game.board.get(1,1)).to eq Piece.new(playerA.icon) 
+        expect(game.board.item_at(1,1)).to eq Piece.new(playerA.icon) 
       end
     end
   end

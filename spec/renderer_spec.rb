@@ -12,32 +12,32 @@ RSpec.describe Renderer do
     it 'addresses the current player' do 
       msg = game.current_player.name + " enter your next move:\n"
       allow(described_class).to receive(:gets).and_return('')
-      expect{described_class.input(game)}.to output(msg).to_stdout
+      expect{described_class.input(game.current_player.name)}.to output(msg).to_stdout
     end 
 
     it 'retrieves a valid position and returns it as an array of integers' do 
       allow(described_class).to receive(:gets).and_return('11')
-      expect(described_class.input(game)).to eq [1,1]
+      expect(described_class.input(game.current_player.name)).to eq [1,1]
     end
 
     it 'equals nil if the input is empty' do 
       allow(described_class).to receive(:gets).and_return('')
-      expect(described_class.input(game)).to eq nil
+      expect(described_class.input(game.current_player.name)).to eq nil
     end 
 
     it 'equals nil if there is only one char' do 
       allow(described_class).to receive(:gets).and_return('1')
-      expect(described_class.input(game)).to eq nil
+      expect(described_class.input(game.current_player.name)).to eq nil
     end 
 
     it 'equals an array of the size 2 if the input is longer' do 
       allow(described_class).to receive(:gets).and_return('123')
-      expect(described_class.input(game).size).to eq 2
+      expect(described_class.input(game.current_player.name).size).to eq 2
     end 
 
     it 'equals nil if the input is 1a' do 
       allow(described_class).to receive(:gets).and_return('1a')
-      expect(described_class.input(game)).to eq nil
+      expect(described_class.input(game.current_player.name)).to eq nil
     end
 
   end 
