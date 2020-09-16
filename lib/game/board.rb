@@ -61,6 +61,8 @@ class Board
   end
 
   def equal_piece(array)
-    array.first if array.uniq.size == 1
+    array.reduce(array.first) do |acc, item|
+      acc if acc == item 
+    end 
   end
 end
