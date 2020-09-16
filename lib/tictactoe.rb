@@ -13,7 +13,7 @@ class TicTacToe
 
   def start
     while !game_over?
-      Renderer.print_board(self)
+      Renderer.print_board(board)
 
       next_move = Renderer.input(current_player.name)
       while next_move.nil?
@@ -22,6 +22,9 @@ class TicTacToe
 
       make_move(current_player, next_move)
     end
+
+    msg = winner.nil? ? 'Draw!' : winner.name + ' won.'
+    Renderer.game_over_msg(msg)
   end 
 
   def make_move(player, position)
@@ -42,39 +45,19 @@ class TicTacToe
 
   private 
   def fetch_winner_piece 
-    row_or_column_win = (0...3).reduce(nil) do |accumulator, index| 
-      if accumulator.nil?
-        accumulator = row_elements_equal(index) || column_elements_equal(index)
-      end 
-      accumulator
+    (0...board.rows).each do |row_index|
+      if board.row_equal_piece(row_index)
+        return board.item_at(row_index, 0)
+      end
     end
 
-    diagonal_elements_equal || row_or_column_win
+    (0...board.columns).each do |column_index|
+      if board.column_equal_piece(column_index)
+        return board.item_at(0, column_index)
+      end
+    end
+
+    board.diagonal_equal_piece(0, 0, 1, 1) || 
+    board.diagonal_equal_piece(2, 0, -1, 1) 
   end 
-
-  def diagonal_elements_equal
-    top_left      = board.item_at(0,0)
-    top_right     = board.item_at(0,1)
-    center        = board.item_at(1,1)
-    bottom_left   = board.item_at(2,0)
-    bottom_right  = board.item_at(2,2)
-
-    center if !center.nil? && (
-      (top_left==center && bottom_right==center) || 
-      (top_right==center && bottom_left==center))
-  end 
-
-  def row_elements_equal(row_index)
-    a = board.item_at(row_index,0)
-    b = board.item_at(row_index,1) 
-    c = board.item_at(row_index,2)
-    a if !a.nil? && a==b && b==c
-  end
-
-  def column_elements_equal(column_index)
-    a = board.item_at(0, column_index)
-    b = board.item_at(1, column_index) 
-    c = board.item_at(2, column_index)
-    a if !a.nil? && a==b && b==c
-  end
 end

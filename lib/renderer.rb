@@ -13,22 +13,26 @@ class Renderer
     input.slice(0, 2) unless input.length < 2
   end
 
-  def self.print_board(game) #board
+  def self.print_board(board) 
     board_string = []
     border = '+-+-+-+'
 
-    for row_index in 0...game.board.rows
+    (0...board.rows).each do |row_index|
       row_data = ['']
-      for column_index in 0...game.board.columns 
-        piece = game.board.item_at(row_index, column_index)
+      (0...board.columns).each do |column_index|
+        piece = board.item_at(row_index, column_index)
         row_data.push(piece.nil? ? ' ' : piece.value)
       end 
-      board_string.push(border)
       row_data.push('')
+      board_string.push(border)
       board_string.push(row_data.join('|'))
     end
     board_string.push(border)
     puts board_string
+  end
+
+  def self.game_over_msg(msg)
+    puts msg 
   end
 end
 
